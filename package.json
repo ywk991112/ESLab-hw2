@@ -4,7 +4,9 @@
   "description": "Tessel project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "start": "xdg-open index.html"
   },
   "repository": "https://github.com/ywk991112/ESLab-hw2",
   "keywords": [
@@ -14,9 +16,12 @@
   "readme": "A bare bones Tessel 2 blinky script.",
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "plotly.js": "^1.26.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "socket.io": "^1.7.3"
+    "react-plotlyjs": "^0.4.1",
+    "socket.io": "^1.7.3",
+    "socket.io-client": "^1.7.3"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
