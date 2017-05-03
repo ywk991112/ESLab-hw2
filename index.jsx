@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import io from 'socket.io-client'
+import createPlotlyComponent from 'react-plotlyjs';
+import Plotly from 'plotly.js/dist/plotly-cartesian';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,8 +11,13 @@ class App extends React.Component {
       tem: 0,
       hum: 0,
       sound: 0,
-      light: 0
-    }
+      light: 0,
+			time: 0
+    };
+		this.temR = [];
+		this.humR = [];
+		this.soundR = [];
+		this.lightR = [];
   }
 
 	componentDidMount() {
@@ -24,6 +31,31 @@ class App extends React.Component {
 		});
 	}
 
+	componentWillUnmount() {
+		if(this.timer) 
+			clearInterval(this.timer);
+		
+	}
+
+	startPlot = () => {
+		this.timer = setInterval(
+      () => this.tick(),
+      1000
+    );	
+	}
+
+	tick = () => {
+		let time = this.state.time + 1;
+		console.log('time', time);
+		this.setState({time: time});
+		// test
+		this.setState({hum: this.state.hum + 1});
+		this.temR = [...this.temR, this.state.tem];
+		this.humR = [...this.humR, this.state.hum];
+		this.soundR = [...this.soundR, this.state.sound];
+		this.lightR = [...this.lightR, this.state.light];
+	}
+
 	connect = () => {
 		const socket = io('http://localhost:8080');
 		return new Promise(resolve => {
@@ -33,6 +65,47 @@ class App extends React.Component {
 		});
 	}
 
+	createXY = (arr) => {
+		let a = [0, 0, 0, 0, 0];
+		let count = 5;
+		for(let i = arr.length-1; i > 0 && count > 0; i--) {
+			count --;
+			a[count] = arr[i];
+		}
+		return a;
+	}
+
+  plot = (arr, name) => {
+    const PlotlyComponent = createPlotlyComponent(Plotly);
+    let data = [
+      {
+        type: 'scatter',  
+        x: [0, 1, 2, 3, 4],     
+        y: this.createXY(arr),     
+        marker: {         
+          color: 'rgb(16, 32, 77)' 
+        },
+				name: name 
+      }
+    ];
+    let layout = {                     
+      title: name + ' time slot',  
+      xaxis: {                  
+        title: 'time'         
+      },
+			yaxis: {
+				title: name 
+			}
+    };
+    let config = {
+      showLink: false,
+      displayModeBar: false
+    };
+    return (
+      <PlotlyComponent className="" data={data} layout={layout} config={config}/>
+    );
+  }
+
   render() {
     return (
       <div>
@@ -40,6 +113,11 @@ class App extends React.Component {
         <p>humidity: {this.state.hum} </p>
         <p>sound: {this.state.sound} </p>
         <p>light: {this.state.light} </p>
+				<button onClick={this.startPlot}>start plot</button>
+				{this.plot(this.humR, 'humid')}
+				{this.plot(this.temR, 'temperature')}
+				{this.plot(this.soundR, 'sound')}
+				{this.plot(this.lightR, 'light')}
       </div>
     );
   }

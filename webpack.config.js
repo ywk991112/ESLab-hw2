@@ -35,7 +35,8 @@ module.exports = {
     new ExtractTextPlugin('[name].css'),
     new webpack.LoaderOptionsPlugin({
       minimize: inProduction,
-    })
+    }),
+    new webpack.optimize.UglifyJsPlugin()
   ],
 };
 
