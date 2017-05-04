@@ -23,7 +23,7 @@ After the tessel can be found by running
 ```
 t2 list
 ```
-then Send run the code on the tessel board by running
+then run the code on the tessel board by running
 ```
 t2 run index.js
 ```
