@@ -21,10 +21,7 @@ class App extends React.Component {
 		this.connect()
 		.then(socket => {
 			console.log('the socket is connected');
-			socket.on('update tem', function(msg){
-        console.log(msg);
-        // tem => this.setState({tem: tem})
-      });
+			socket.on('update tem', tem => this.setState({tem: tem}));
 			socket.on('update hum', hum => this.setState({hum: hum}));
       socket.on('update fan', fan => this.setState({fan: fan}));
 		});
@@ -43,21 +40,6 @@ class App extends React.Component {
     );	
 	}
 
-	//ticktest = () => {
-		//let time = this.state.time + 1;
-		//console.log('time', time);
-    //this.setState({time: time});
-    //const p = new Promise( () => {
-      //this.setState({hum: this.state.hum + 1})
-      //resolve(5);
-    //});
-    //p.then( hum => {
-      //console.log('hao' + hum);
-      //this.temR = [...this.temR, this.state.tem];
-      //this.humR = [...this.humR, this.state.hum];
-    //});
-	//}
-
 	tick = () => {
 		let time = this.state.time + 1;
 		console.log('time', time);
@@ -70,9 +52,8 @@ class App extends React.Component {
 	connect = () => {
     const socket = io('http://localhost:8000');
 		// const socket = io('http://Eric.local:8000');
-
 		return new Promise(resolve => {
-			socket.on('connection', () => {
+			socket.on('connect', () => {
 				resolve(socket);
 			});
 		});
