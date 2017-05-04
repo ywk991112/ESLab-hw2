@@ -21,7 +21,10 @@ class App extends React.Component {
 		this.connect()
 		.then(socket => {
 			console.log('the socket is connected');
-			socket.on('update tem', tem => this.setState({tem: tem}));
+			socket.on('update tem', function(msg){
+        console.log(msg);
+        // tem => this.setState({tem: tem})
+      });
 			socket.on('update hum', hum => this.setState({hum: hum}));
       socket.on('update fan', fan => this.setState({fan: fan}));
 		});
@@ -65,7 +68,9 @@ class App extends React.Component {
 	}
 
 	connect = () => {
-		const socket = io('http://localhost:8000');
+    const socket = io('http://localhost:8000');
+		// const socket = io('http://Eric.local:8000');
+
 		return new Promise(resolve => {
 			socket.on('connection', () => {
 				resolve(socket);
