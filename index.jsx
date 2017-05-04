@@ -10,8 +10,6 @@ class App extends React.Component {
     this.state = {
       tem: 0,
       hum: 0,
-      sound: 0,
-      light: 0,
 			time: 0
     };
 		this.temR = [];
@@ -26,8 +24,6 @@ class App extends React.Component {
 			console.log('the socket is connected');
 			socket.on('tem', (tem) => this.setState({tem: tem}));
 			socket.on('hum', (hum) => this.setState({hum: hum}));
-			socket.on('sound', (sound) => this.setState({sound: sound}));
-			socket.on('light', (light) => this.setState({light: light}));
 		});
 	}
 
@@ -56,8 +52,6 @@ class App extends React.Component {
       //console.log('hao' + hum);
       //this.temR = [...this.temR, this.state.tem];
       //this.humR = [...this.humR, this.state.hum];
-      //this.soundR = [...this.soundR, this.state.sound];
-      //this.lightR = [...this.lightR, this.state.light];
     //});
 	//}
 
@@ -68,8 +62,6 @@ class App extends React.Component {
     this.setState({hum: this.state.hum + 1})
     this.temR = [...this.temR, this.state.tem];
     this.humR = [...this.humR, this.state.hum];
-    this.soundR = [...this.soundR, this.state.sound];
-    this.lightR = [...this.lightR, this.state.light];
 	}
 
 	connect = () => {
@@ -127,13 +119,9 @@ class App extends React.Component {
       <div>
         <p>temperature: {this.state.tem} </p>
         <p>humidity: {this.state.hum} </p>
-        <p>sound: {this.state.sound} </p>
-        <p>light: {this.state.light} </p>
 				<button onClick={this.startPlot}>start plot</button>
 				{this.plot(this.humR, 'humid')}
 				{this.plot(this.temR, 'temperature')}
-				{this.plot(this.soundR, 'sound')}
-				{this.plot(this.lightR, 'light')}
       </div>
     );
   }
