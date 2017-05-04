@@ -1,9 +1,9 @@
 # ESLab-hw2
 # Introduction
-This is a small project in ESLab. We use tessel 2 as our development platform, with the climate module as our input module, servo as our output module. Furthermore, we display our input and output on the browser.
+This is a small project in ESLab. We use tessel 2 as our development platform, with the climate module as our input module, servo as our output module. Furthermore, we display our input and output values on the browser.
 
 # Get Started
-Clone code from [github](https://github.com/ywk991112/ESLab-hw2) and install dependencies.
+Clone the code from [github](https://github.com/ywk991112/ESLab-hw2) and install dependencies.
 ```
 git clone https://github.com/ywk991112/ESLab-hw2
 cd ESLab-hw2
@@ -28,4 +28,5 @@ then run the code on the tessel board by running
 t2 run index.js
 ```
 And then point your browser to `http://{tessel board name}.local:8000`  
+## Video
 We put our demo video on [youtube](https://www.youtube.com/watch?v=Bf1pBLWhoic)
