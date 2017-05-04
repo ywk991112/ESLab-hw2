@@ -44,16 +44,32 @@ class App extends React.Component {
     );	
 	}
 
+	//ticktest = () => {
+		//let time = this.state.time + 1;
+		//console.log('time', time);
+    //this.setState({time: time});
+    //const p = new Promise( () => {
+      //this.setState({hum: this.state.hum + 1})
+      //resolve(5);
+    //});
+    //p.then( hum => {
+      //console.log('hao' + hum);
+      //this.temR = [...this.temR, this.state.tem];
+      //this.humR = [...this.humR, this.state.hum];
+      //this.soundR = [...this.soundR, this.state.sound];
+      //this.lightR = [...this.lightR, this.state.light];
+    //});
+	//}
+
 	tick = () => {
 		let time = this.state.time + 1;
 		console.log('time', time);
-		this.setState({time: time});
-		// test
-		this.setState({hum: this.state.hum + 1});
-		this.temR = [...this.temR, this.state.tem];
-		this.humR = [...this.humR, this.state.hum];
-		this.soundR = [...this.soundR, this.state.sound];
-		this.lightR = [...this.lightR, this.state.light];
+    this.setState({time: time});
+    this.setState({hum: this.state.hum + 1})
+    this.temR = [...this.temR, this.state.tem];
+    this.humR = [...this.humR, this.state.hum];
+    this.soundR = [...this.soundR, this.state.sound];
+    this.lightR = [...this.lightR, this.state.light];
 	}
 
 	connect = () => {

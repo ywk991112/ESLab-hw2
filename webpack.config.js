@@ -36,7 +36,6 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       minimize: inProduction,
     }),
-    new webpack.optimize.UglifyJsPlugin()
   ],
 };
 
