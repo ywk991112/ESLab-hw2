@@ -24,7 +24,12 @@
     "react-dom": "^15.5.4",
     "react-plotlyjs": "^0.4.1",
     "socket.io": "^1.7.3",
-    "socket.io-client": "^1.7.3"
+    "socket.io-client": "^1.7.3",
+    "socket.io": "1.0.3",
+    "express": "4.4.0",
+    "climate-si7020":"",
+    "tessel":"",
+    "servo-pca9685":""
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
