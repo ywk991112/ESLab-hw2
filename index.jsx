@@ -67,7 +67,7 @@ class App extends React.Component {
 	connect = () => {
 		const socket = io('http://localhost:8000');
 		return new Promise(resolve => {
-			socket.on('connect', () => {
+			socket.on('connection', () => {
 				resolve(socket);
 			});
 		});
