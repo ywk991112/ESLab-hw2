@@ -10,20 +10,20 @@ class App extends React.Component {
     this.state = {
       tem: 0,
       hum: 0,
+      fan: 0,
 			time: 0
     };
 		this.temR = [];
 		this.humR = [];
-		this.soundR = [];
-		this.lightR = [];
   }
 
 	componentDidMount() {
 		this.connect()
 		.then(socket => {
 			console.log('the socket is connected');
-			socket.on('tem', (tem) => this.setState({tem: tem}));
-			socket.on('hum', (hum) => this.setState({hum: hum}));
+			socket.on('update tem', tem => this.setState({tem: tem}));
+			socket.on('update hum', hum => this.setState({hum: hum}));
+      socket.on('update fan', fan => this.setState({fan: fan}));
 		});
 	}
 
@@ -59,13 +59,13 @@ class App extends React.Component {
 		let time = this.state.time + 1;
 		console.log('time', time);
     this.setState({time: time});
-    this.setState({hum: this.state.hum + 1})
+    //this.setState({hum: this.state.hum + 1})
     this.temR = [...this.temR, this.state.tem];
     this.humR = [...this.humR, this.state.hum];
 	}
 
 	connect = () => {
-		const socket = io('http://localhost:8080');
+		const socket = io('http://localhost:8000');
 		return new Promise(resolve => {
 			socket.on('connect', () => {
 				resolve(socket);
@@ -119,6 +119,7 @@ class App extends React.Component {
       <div>
         <p>temperature: {this.state.tem} </p>
         <p>humidity: {this.state.hum} </p>
+        <p>fan level: {this.state.fan} </p>
 				<button onClick={this.startPlot}>start plot</button>
 				{this.plot(this.humR, 'humid')}
 				{this.plot(this.temR, 'temperature')}
