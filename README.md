@@ -23,6 +23,10 @@ After the tessel can be found by running
 ```
 t2 list
 ```
+Connect the tessel board to wifi
+```
+t2 wifi -n <network-name> -p <password>
+```
 then run the code on the tessel board by running
 ```
 t2 run index.js
