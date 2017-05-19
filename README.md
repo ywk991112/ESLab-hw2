@@ -14,7 +14,7 @@ npm install
 NODE_ENV=production npm run build
 ```
 ## Start the App
-First, the tessel 2 environment need to be set up. For more detail: [INSTALL TESSEL 2](http://tessel.github.io/t2-start/)  
+First, the tessel 2 environment needs to be set up. For more detail: [INSTALL TESSEL 2](http://tessel.github.io/t2-start/)  
 Connect the board to USB and authorize by running the command
 ```
 t2 provision
